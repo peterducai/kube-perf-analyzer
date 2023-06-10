@@ -1,0 +1,36 @@
+overloaded
+took too long
+slow fdatasync
+clock difference against peer
+heartbeat
+database space exceeded
+took too long due to leader changed
+elected leader
+
+
+
+
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep overloaded|wc -l) overloaded messages"
+          echo -e "$OVERLOADN x OVERLOADED NETWORK in $1  (high network or remote storage latency)"
+      echo -e "$OVERLOADC x OVERLOADED DISK/CPU in $1  (slow storage or lack of CPU on masters)"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep 'took too long'|wc -l) took too long messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep 'slow fdatasync'|wc -l) slow fdatasync messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep clock|wc -l) clock difference messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep heartbeat|wc -l) heartbeat messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep 'database space exceeded'|wc -l) database space exceeded messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep 'leader changed'|wc -l) took too long due to leader changed messages"
+    echo -e "Found $($CLIENT logs $i -c etcd -n $ETCDNS|grep 'elected leader'|wc -l) leader changed messages"
+
+
+
+
+        OVERLOAD=$(cat $1/etcd/etcd/logs/current.log|grep 'overload'|wc -l)
+    OVERLOADN=$(cat $1/etcd/etcd/logs/current.log|grep 'overload'|grep network|wc -l)
+    OVERLOADC=$(cat $1/etcd/etcd/logs/current.log|grep 'overload'|grep disk|wc -l)
+    LAST=$(cat $1/etcd/etcd/logs/current.log|grep 'overload'|tail -1)
+    LOGEND=$(cat $1/etcd/etcd/logs/current.log|tail -1)
+
+
+
+
+    #declare -A assArray2=( [HDD]=Samsung [Monitor]=Dell [Keyboard]=A4Tech )
