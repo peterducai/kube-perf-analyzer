@@ -4,7 +4,9 @@ import csv
 
 etcd_warning_list = []
 
-class etcd_warning:
+
+class EtcdWarning:
+
     def __init__(self, name, description, color, threshold, grep):
         self.name = name
         self.count = 0
@@ -21,7 +23,7 @@ with open('warnings.csv', newline='') as f:
     for row in reader:
         print(row)
         #for i in etcd_warning_list:
-        etcd_warning_list.append(etcd_warning(row))
+        etcd_warning_list.append(EtcdWarning(row))
 
  
 
